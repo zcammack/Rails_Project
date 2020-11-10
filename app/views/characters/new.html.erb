@@ -1,10 +1,18 @@
 <h1>Create your new character here!</h1>
 
     
-	<%= form_for(@character) do |f| %>
-	  <%= f.label :first_name %> 
-	  <%= f.text_field :first_name %>
-	  <%= f.label :last_name %> 
-	  <%= f.text_field :last_name %>
-	  <%= f.submit %>
+	<%= form_with scope: :character, local: true do |f| %>
+	    <p>
+            <%= f.label :first_name %> <br>
+            <%= f.text_field :first_name %>
+        </p>
+
+        <p>
+            <%= f.label :last_name %>  <br>
+            <%= f.text_field :last_name %>
+        </p>
+
+        <p>
+	        <%= f.submit %>
+        </p>
 	<% end %>
