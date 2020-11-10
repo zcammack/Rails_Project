@@ -1,5 +1,18 @@
 class CharactersController < ApplicationController
+
+    def index
+        @characters = Character.all
+    end
+
+    def show
+        @character = Character.find(params[:id])
+    end
+
     def new
+
+    end
+
+    def edit
 
     end
 
@@ -8,6 +21,14 @@ class CharactersController < ApplicationController
 
         @character.save
         redirect_to @character
+    end
+
+    def update
+
+    end
+
+    def destroy
+
     end
 
     private

@@ -1,7 +1,7 @@
 <h1>Create your new character here!</h1>
 
     
-	<%= form_with scope: :character, local: true do |f| %>
+	<%= form_with scope: :character, url: characters_path, local: true do |f| %>
 	    <p>
             <%= f.label :first_name %> <br>
             <%= f.text_field :first_name %>
