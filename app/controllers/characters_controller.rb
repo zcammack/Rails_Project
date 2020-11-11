@@ -29,7 +29,11 @@ class CharactersController < ApplicationController
     end
 
     def update
-
+        if @character.update(character_params)
+            redirect_to @character
+        else
+            render 'edit'
+        end
     end
 
     def destroy
