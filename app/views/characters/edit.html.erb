@@ -1,35 +1,5 @@
 <h1>Edit Character</h1>
 
-<%= form_with(model: @character, local: true) do |form| %>
-
-    <% if @character.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@character.errors.count, "error") %>
-                prohibited this character from being saved: 
-            </h2>
-            <ul>
-                <% @character.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-
-    <p>
-        <%= form.label :first_name %><br>
-        <%= form.text_field :first_name %>
-    </p>
-
-    <p>
-        <%= form.label :last_name %><br>
-        <%= form.text_field :last_name %>
-    </p>
-
-    <p>
-        <%= form.submit %>
-    </p>
-
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back', characters_path %>
