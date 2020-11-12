@@ -11,7 +11,7 @@ class CharactersController < ApplicationController
     end
 
     def new
-        @character = Character.new
+        @character = current_user.characters.new
     end
 
     def edit
@@ -19,7 +19,7 @@ class CharactersController < ApplicationController
     end
 
     def create
-        @character = Character.new(character_params)
+        @character = current_user.characters.new(character_params)
 
         if @character.save
             redirect_to @character
@@ -44,7 +44,7 @@ class CharactersController < ApplicationController
     private
 
     def get_character
-        @character = Character.find(params[:id])
+        @character = current_user.characters.find(params[:id])
     end
 
     def character_params

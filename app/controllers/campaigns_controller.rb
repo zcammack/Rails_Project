@@ -11,7 +11,7 @@ class CampaignsController < ApplicationController
     end
 
     def new
-        @campaign = Campaign.new
+        @campaign = current_user.campaigns.new
     end
 
     def edit
@@ -19,7 +19,7 @@ class CampaignsController < ApplicationController
     end
 
     def create
-        @campaign = Campaign.new(campaign_params)
+        @campaign = current_user.campaigns.new(campaign_params)
 
         if @campaign.save
             redirect_to @campaign
@@ -45,7 +45,7 @@ class CampaignsController < ApplicationController
     private
 
     def get_campaign
-        @campaign = Campaign.find(params[:id])
+        @campaign = current_user.campaigns.find(params[:id])
     end
 
     def campaign_params

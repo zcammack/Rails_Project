@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
   has_many :characters
-  has_many :campaigns through: :characters
+  has_many :campaigns, through: :characters
 end
