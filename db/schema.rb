@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_033916) do
+ActiveRecord::Schema.define(version: 2020_11_12_082029) do
 
-  create_table "characters", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+  create_table "campaigns", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "setting"
+    t.string "dungeonmaster"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "characters", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "campaign_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_characters_on_campaign_id"
+  end
+
+  add_foreign_key "characters", "campaigns"
 end
