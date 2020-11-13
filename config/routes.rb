@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   root 'profile#welcome'
 
-  get '/auth/facebook/callback' => 'sessions#create'
+  get '/auth/:provider' => 'sessions#create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
