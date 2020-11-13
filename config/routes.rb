@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :characters, shallow: true
   end
-  
+
   get 'profile/new'
 
   get 'profile/edit'
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'profile/welcome'
 
   root 'profile#welcome'
+
+  get '/auth/facebook/callback' => 'sessions#create'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
