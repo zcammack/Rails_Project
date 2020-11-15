@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :campaigns do
+  resources :users do
     resources :characters, shallow: true
   end
+
+  resources :campaigns 
 
 
   root 'welcome#welcome'
