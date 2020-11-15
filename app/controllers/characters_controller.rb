@@ -44,7 +44,7 @@ class CharactersController < ApplicationController
     private
 
     def get_character
-        @character = current_user.characters.find(params[:id])
+        @character = Character.find(params[:id])
     end
 
     def character_params
