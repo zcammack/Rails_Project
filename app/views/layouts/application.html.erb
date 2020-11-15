@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/campaigns">Browse Campaigns</a>
+              <%= link_to 'Browse Campaigns', campaigns_path, :class => 'navbar-link' %>
             </li>
             <p class="navbar-text float-right">
               <% if user_signed_in? %>
