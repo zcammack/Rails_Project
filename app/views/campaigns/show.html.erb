@@ -1,6 +1,12 @@
-<p>
+<br><br>
+<h3>
     <strong>Title:</strong>
     <%= @campaign.title %>
+</h3>
+
+<p>
+    <strong>Setting:</strong>
+    <%= @campaign.setting %>
 </p>
 
 <p>
@@ -9,17 +15,14 @@
 </p>
 
 <p>
-    <strong>Setting:</strong>
-    <%= @campaign.setting %>
-</p>
-
-<p>
     <strong>Dungeon Master:</strong>
     <%= @campaign.dungeonmaster %>
 </p>
 
-<%= link_to 'All Campaigns', campaigns_path %>
+<%= link_to 'All Campaigns', campaigns_path %><br>
 
-<%= link_to 'New Campaign', new_campaign_path %>
+<%= link_to 'New Campaign', new_campaign_path %><br>
 
-<%= link_to 'Edit Campaign', edit_campaign_path(@campaign) %>
+<%= link_to 'Edit Campaign', edit_campaign_path(@campaign) %><br>
+
+<%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?'} %><br>

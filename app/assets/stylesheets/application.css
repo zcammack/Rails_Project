@@ -2,7 +2,7 @@ body {
     margin-left: 20%;
     margin-right: 20%;
     position: relative;
-    height: 100vh;
+    height: 500vh;
   }
 
 footer {
@@ -14,6 +14,5 @@ footer {
     border-top-style: solid;
     border-top-width: medium;
     border-top-color: #807B7A;
-    position: absolute;
     bottom: 0;
 }
