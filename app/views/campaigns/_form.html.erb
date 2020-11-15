@@ -17,22 +17,22 @@
  
   <p>
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, autocomplete: "Title"%>
   </p>
  
   <p>
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, autocomplete: "Description" %>
   </p>
  
    <p>
     <%= form.label :setting %><br>
-    <%= form.text_field :setting %>
+    <%= form.text_field :setting, autocomplete: "Setting"%>
   </p>
 
    <p>
     <%= form.label :dungeonmaster %><br>
-    <%= form.text_field :dungeonmaster %>
+    <%= form.text_field :dungeonmaster, autocomplete: "Dungeon Master" %>
   </p>
 
   <p>

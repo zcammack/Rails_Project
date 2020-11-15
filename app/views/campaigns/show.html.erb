@@ -18,6 +18,7 @@
     <strong>Dungeon Master:</strong>
     <%= @campaign.dungeonmaster %>
 </p>
+<br>
 
 <%= link_to 'All Campaigns', campaigns_path %><br>
 
@@ -25,4 +26,4 @@
 
 <%= link_to 'Edit Campaign', edit_campaign_path(@campaign) %><br>
 
-<%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?'} %><br>
+<%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
