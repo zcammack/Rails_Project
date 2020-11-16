@@ -10,40 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_182744) do
+ActiveRecord::Schema.define(version: 2020_11_16_204920) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.string "setting"
-    t.string "dungeonmaster"
+    t.integer "dungeonmaster_id"
+    t.integer "number_of_parties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "campaign_id", null: false
+    t.integer "party_id"
+    t.integer "level_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["campaign_id"], name: "index_characters_on_campaign_id"
-    t.index ["user_id"], name: "index_characters_on_user_id"
   end
 
   create_table "dungeonmasters", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.string "name"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_dungeonmasters_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_dungeonmasters_on_reset_password_token", unique: true
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.integer "level"
+    t.string "class"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "parties", force: :cascade do |t|
+    t.string "title"
+    t.integer "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "party_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,22 +66,20 @@ ActiveRecord::Schema.define(version: 2020_11_16_182744) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.string "image"
-    t.string "provider"
-    t.string "uid"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
-  add_foreign_key "campaigns", "users"
-  add_foreign_key "characters", "campaigns"
-  add_foreign_key "characters", "users"
 end

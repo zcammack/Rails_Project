@@ -4,7 +4,8 @@ class CreateCampaigns < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :description
       t.string :setting
-      t.string :dungeonmaster
+      t.integer :dungeonmaster_id
+      t.integer :number_of_parties
 
       t.timestamps
     end
