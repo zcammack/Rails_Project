@@ -4,7 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :characters
+  has_many( 
+    :characters,
+    class_name: 'Character',
+    foreign_key: 'user_id',
+    inverse_of: :creator
+  )
+  
   has_many :campaigns
   has_many :dungeonmasters, through: :campaigns
 
