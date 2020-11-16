@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_many( 
     :characters,
@@ -10,7 +10,7 @@ class User < ApplicationRecord
     foreign_key: 'user_id',
     inverse_of: :creator
   )
-  
+
   has_many :campaigns
   has_many :dungeonmasters, through: :campaigns
 

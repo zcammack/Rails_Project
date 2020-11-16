@@ -15,6 +15,10 @@ u2 = User.create!(
     password: 'password'
 )
 
+camp1 = Campaign.create!(
+    
+)
+
 char1 = Character.create!(
     creator: u1
     first_name: 'Bragi',
