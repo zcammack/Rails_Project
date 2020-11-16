@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :users do
-    resources :characters, shallow: true
-  end
-
-  resources :campaigns 
-
+  resources :users, shallow: true do
+    resources :characters
+    resources :campaigns
+  end 
+#This puts the index, new, and create actions under users.
 
   root 'welcome#welcome'
 

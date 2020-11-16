@@ -16,6 +16,11 @@ class CampaignsController < ApplicationController
 
     def edit
         get_campaign
+        if current_user != @campaign.user
+            redirect_to campaigns_path
+        else
+            render 'edit'
+        end
     end
 
     def create
