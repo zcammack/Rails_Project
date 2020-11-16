@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable#, omniauthable, omniauth_providers: [:facebook]
 
   has_many( 
     :characters,
@@ -21,7 +21,7 @@ class User < ApplicationRecord
       end
     end
   end
-  
+
   def self.from_omniauth(auth)
     user = User.find_by('email = ?', auth['info']['email'])
     if user.blank?

@@ -5,7 +5,7 @@ ruby '2.6.1'
 
 gem 'devise'
 
-gem 'omniauth'
+gem 'omniauth-oauth2', '1.3.1'
 
 gem 'omniauth-facebook'
 
