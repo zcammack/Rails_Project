@@ -1,6 +1,6 @@
-class CreateParties < ActiveRecord::Migration[6.0]
+class CreatePartys < ActiveRecord::Migration[6.0]
   def change
-    create_table :parties do |t|
+    create_table :partys do |t|
       t.string :title
       t.integer :size
     

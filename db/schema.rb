@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_204920) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "parties", force: :cascade do |t|
+  create_table "partys", force: :cascade do |t|
     t.string "title"
     t.integer "size"
     t.datetime "created_at", precision: 6, null: false
