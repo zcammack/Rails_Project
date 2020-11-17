@@ -8,5 +8,6 @@ class Party < ApplicationRecord
     validates_numericality_of :size
     accepts_nested_attributes_for :characters
 
+    scope :parties_with_4_or_more, -> { where("party.size >= ?", 4)}
 
 end
