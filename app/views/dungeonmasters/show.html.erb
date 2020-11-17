@@ -1,6 +1,7 @@
 <h2>Dungeonmaster Information</h2>
 Name: <%= @dungeonmaster.name %>
 <br />
+<br />
 <h4>Campaigns</h4>
 <% if @campaigns.empty? %>
 	<p>You have no campaigns. Would you like to add a campaign?</p>
@@ -15,4 +16,5 @@ Name: <%= @dungeonmaster.name %>
 <%= link_to 'Add Campaign', new_dungeonmaster_campaign_path(@dungeonmaster) %>
 <br />
 <%= link_to 'View Parties with four or more', parties_with_4_or_more_path(@dungeonmaster) %>
-<%= link_to 'View all Dungeonmasters', all_path %>
+<br />
+<%= link_to 'View all Dungeonmasters', dungeonmasters_path %>

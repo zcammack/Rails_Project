@@ -1,27 +1,5 @@
-  <%= form_for @campaign, url: @url do |f| %>
+<%= form_for @campaign, url: @url do |f| %>
 	Title: <%= f.text_field :title %><br /><br />
 	Description: <%= f.text_area :description %><br /><br />
-	Number of Parties: <%= f.text_field :number_of_parties %><br /><br />
-	<h4>Parties:</h4>
-	<%= f.fields_for :partys, @campaign.partys do |adv| %>
-		Title: <%= adv.text_field :title %><br /><br /> 
-		Number of Adventurers: <%= adv.text_field :size %><br /><br /> 
-		<%= adv.collection_check_boxes :character_ids, character.all, :id, :first_name %>
-		<br /><br />
-        <%= adv.fields_for :character, adv.object.character.build do |character_fields| %>
-            <%= label_tag "Add New Character:" %>
-            <%= character_fields.text_field :first_name %>
-            <%= character_fields.text_field :last_name %>
-        <% end %>
-        <br /><br />
-		    <%= adv.fields_for :levels do |lvl| %>
-		      <%= lvl.object.character.class %>
-		      Class Level:
-		      <%= lvl.text_field :class %>
-		      <br />
-		    <% end %>
-	    <% end %>
-		<h3>----------------------------------------------------------------------------------------</h3>
- 	<% end %> 
     <%= f.submit %>
 <% end %>

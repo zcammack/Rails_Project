@@ -1,4 +1,4 @@
-<% if @dungeonmaster.parties.parties_with_4_or_more.size > 4 %>
+<% if @dungeonmaster.party.parties_with_4_or_more.size > 4 %>
 	<p>These parties already have four or more adventurers:</p>
 	<ul>
 		<% @dungeonmaster.parties.parties_with_4_or_more.each do |a| %>

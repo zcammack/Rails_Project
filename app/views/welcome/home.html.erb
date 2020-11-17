@@ -6,7 +6,7 @@
 	<% else %>
 		<p>Your role is <%= current_user.role %>.</p>
 		<% if current_user.role == 'dungeonmaster' %>
-			<%= link_to('Manage Campaigns', dungeonmaster_path(dungeonmaster.find_by(user: current_user))) %>
+			<%= link_to('Manage Campaigns', dungeonmaster_path(Dungeonmaster.find_by(user: current_user))) %>
 		<% end %>
 	<% end %>
 <% end %>
