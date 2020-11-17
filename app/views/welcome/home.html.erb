@@ -1,15 +1,8 @@
-<h4>Welcome to the official Dungeons and Dragons Planner!</h4>
-<br>
-<br>
-<p>Please log in or sign up to get started!</p>
+<br />
 
-
-<h1>Welcome to the Dungeons and Dragons Planner! </h1> 
 <% if current_user %>
 	<% if current_user.role.nil? %>
-		<p>Each user can be either a Dungeonmaster or a Player.</p>
-		<h3>Are you a <%= link_to('dungeonmaster', new_dungeonmaster_path) %> or a player? </h3>
-		<p>You can only chose to be a Dungeonmaster at this time.</p>
+		<h3>Are you a <%= link_to('dungeonmaster', new_dungeonmaster_path) %> or a <%= link_to('player', new_player_path) %>? </h3>
 	<% else %>
 		<p>Your role is <%= current_user.role %>.</p>
 		<% if current_user.role == 'dungeonmaster' %>

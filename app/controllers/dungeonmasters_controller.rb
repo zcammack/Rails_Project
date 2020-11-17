@@ -15,7 +15,7 @@ class DungeonmastersController < ApplicationController
 	end
 
 	def create
-		@dungeonmaster = dungeonmaster.new(name: dungeonmaster_params[:name], user: current_user)
+		@dungeonmaster = Dungeonmaster.new(name: dungeonmaster_params[:name], user: current_user)
 		if @dungeonmaster.save
 			@dungeonmaster.user.set_dungeonmaster_role
 			redirect_to dungeonmaster_path(@dungeonmaster)
