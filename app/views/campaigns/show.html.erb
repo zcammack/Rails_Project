@@ -1,29 +1,20 @@
-<br><br>
-<h3>
-    <strong>Title:</strong>
-    <%= @campaign.title %>
-</h3>
+<% if flash[:notice] %>
+	<div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<% if @campaign.errors.any? %>
+  <% @campaign.errors.full_messages.each do |error_message| %>
+    Error: <%= error_message %> <br />
+  <% end %>
+<% end %>
+<h2>Update your Campaign and add Parties!</h2>
+<%= render 'form', campaign: @campaign, partys: @campaign.partys.to_a %>
 
-<p>
-    <strong>Setting:</strong>
-    <%= @campaign.setting %>
-</p>
-
-<p>
-    <strong>Description:</strong>
-    <%= @campaign.description %>
-</p>
-
-<p>
-    <strong>Dungeon Master:</strong>
-    <%= @campaign.dungeonmaster %>
-</p>
 <br>
 
 <%= link_to 'All Campaigns', campaigns_path %><br>
 
-<%= link_to 'New Campaign', new_campaign_path %><br>
+<%= link_to 'New Campaign', new_dungeonmaster_campaign_path %><br>
 
-<%= link_to 'Edit Campaign', edit_campaign_path(@campaign) %><br>
+<%= link_to 'Edit Campaign', edit_dungeonmaster_campaign_path(@campaign) %><br>
 
-<%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
+<%= link_to 'Delete', dungeonmaster_campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
