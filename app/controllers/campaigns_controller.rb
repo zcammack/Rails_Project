@@ -1,22 +1,28 @@
 class CampaignsController < ApplicationController
 
     before_action :get_campaign, only: [:show, :edit, :update, :destroy]
-
+    before_action :get_dungeonmaster, only: [:create, :edit]
     def index
         @campaigns = Campaign.all
     end
 
     def show
-
+        @url = dungeonmaster_campaign_path
+        if @campaign.party.size < @campaign.number_of_parties
+            new_party_forms = @campaign.number_of_parties - @campaign.parties.size
+            new_party_forms.times { @campaign.partys.build }
+        end
     end
 
     def new
-        @campaign = current_user.campaigns.new
+        @dungeonmaster = Dungeonmaster.find(params[:dungeonmaster_id])
+        @campaign = Campaign.new
+        @url = new_dungeonmaster_campaign_path(@dungeonmaster)
     end
 
     def edit
-        get_campaign
-        if current_user != @campaign.user
+        if current_user != @dungeonmaster
+            flash[:notice] = "You cannot edit other dungeonmaster's campaigns!"
             redirect_to campaigns_path
         else
             render 'edit'
@@ -24,20 +30,26 @@ class CampaignsController < ApplicationController
     end
 
     def create
-        @campaign = current_user.campaigns.new(campaign_params)
+        @campaign = @dungeonmaster.campaigns.build(campaign_params)
 
         if @campaign.save
-            redirect_to @campaign
+            redirect_to dungeonmaster_campaign_path(@campaign.dungeonmaster, @dungeonmaster)
         else
-            render 'new'
+            flash[:notice] = "The campaign couldn't be saved."
+            redirect_to new_dungeonmaster_campaign_path(@dungeonmaster)
         end
     end
 
     def update
-        if @campaign.update(campaign_params)
-            redirect_to @campaign
+        @url = dungeonmaster_campaign_path
+        @campaign.update_attributes(campaign_params)
+
+        if @campaign.save
+            flash[:notice] = "The campaign was successfully saved!"
+            redirect_to dungeonmaster_campaign_path(@campaign.dungeonmaster, @campaign)
         else
-            render 'edit'
+            flash[:notice] = "The campaign was not able to save."
+            render :edit
         end
     end
 
@@ -49,11 +61,15 @@ class CampaignsController < ApplicationController
 
     private
 
+    def get_dungeonmaster
+        @dungeonmaster = Dungeonmaster.find(params[:id])
+    end
+
     def get_campaign
         @campaign = Campaign.find(params[:id])
     end
 
     def campaign_params
-        params.require(:campaign).permit(:title, :description, :setting, :dungeonmaster)
+        params.require(:campaign).permit(:title, :description, :setting)
     end
 end
