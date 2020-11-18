@@ -8,9 +8,9 @@ class CampaignsController < ApplicationController
 
     def show
         @url = dungeonmaster_campaign_path
-        if @campaign.party.size < @campaign.number_of_parties
+        if @campaign.parties.size < @campaign.number_of_parties
             new_party_forms = @campaign.number_of_parties - @campaign.parties.size
-            new_party_forms.times { @campaign.partys.build }
+            new_party_forms.times { @campaign.parties.build }
         end
     end
 
@@ -30,8 +30,8 @@ class CampaignsController < ApplicationController
     end
 
     def create
-        @campaign = @dungeonmaster.campaigns.build(campaign_params)
-
+        @campaign = @dungeonmaster.campaigns.build
+        @campaign.update_attributes(campaign_params)
         if @campaign.save
             redirect_to dungeonmaster_campaign_path(@campaign.dungeonmaster, @dungeonmaster)
         else
@@ -69,7 +69,7 @@ class CampaignsController < ApplicationController
         @campaign = Campaign.find(params[:id])
     end
 
-    def campaign_params
-        params.require(:campaign).permit(:title, :description, :setting)
-    end
+	def campaign_params
+		params.require(:campaign).permit(:title, :description, :dungeonmaster_id, :number_of_parties, parties_attributes: [:id, :name, :description, :size, :campaign_id, character_ids:[], characteristics_attributes: [:name], level_attributes: [:class, :id]])
+	end
 end

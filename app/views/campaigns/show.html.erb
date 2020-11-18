@@ -7,11 +7,11 @@
   <% end %>
 <% end %>
 <h2>Update your Campaign and add Parties!</h2>
-<%= render 'form', campaign: @campaign, partys: @campaign.partys.to_a %>
+<%= render 'form', campaign: @campaign, parties: @campaign.parties.to_a %>
 
 <br>
 
-<%= link_to 'All Campaigns', campaigns_path %><br>
+<%= link_to 'All Campaigns', dungeonmaster_campaigns_path %><br>
 
 <%= link_to 'New Campaign', new_dungeonmaster_campaign_path %><br>
 

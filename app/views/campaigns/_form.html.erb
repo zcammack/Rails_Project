@@ -1,5 +1,28 @@
 <%= form_for @campaign, url: @url do |f| %>
 	Title: <%= f.text_field :title %><br /><br />
-	Description: <%= f.text_area :description %><br /><br />
+	Description: <%= f.text_field :description %><br /><br />
+	Number of Parties: <%= f.text_field :number_of_parties %><br /><br />
+	<h4>Parties:</h4>
+	<%= f.fields_for :parties, @campaign.parties do |a| %>
+		Name: <%= a.text_field :name %><br /><br /> 
+		Size: <%= a.text_field :size %><br /><br /> 
+		Description: <%= a.text_field :description %><br /><br /> 
+		<%= a.collection_check_boxes :character_ids, Character.all, :id, :name %>
+		<br /><br />
+        <%= a.fields_for :characters, a.object.characters.build do |characters_fields| %>
+            <%= label_tag "Add a Character:" %>
+            <%= characters_fields.text_field :name %>
+        <% end %>
+        <br /><br />
+		<% if a.object.levels.present? %>
+		    <%= a.fields_for :levels do |c| %>
+		      <%= c.object.character.name %>
+		      - Class?
+		      <%= c.text_field :class %>
+		      <br />
+		    <% end %>
+	    <% end %>
+		<h3>----------------------------------------------------------------------------------------</h3>
+ 	<% end %> 
     <%= f.submit %>
 <% end %>

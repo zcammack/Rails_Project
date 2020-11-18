@@ -1,4 +1,4 @@
 class Level < ApplicationRecord
     has_many :characters
-    has_many :partys, through: :characters
+    has_many :parties, through: :characters
 end

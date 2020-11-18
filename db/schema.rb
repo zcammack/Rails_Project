@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_204920) do
+ActiveRecord::Schema.define(version: 2020_11_18_023320) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "setting"
     t.integer "dungeonmaster_id"
     t.integer "number_of_parties"
     t.datetime "created_at", precision: 6, null: false
@@ -23,12 +22,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_204920) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "party_id"
-    t.integer "level_id"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "party_id"
   end
 
   create_table "dungeonmasters", force: :cascade do |t|
@@ -39,15 +36,17 @@ ActiveRecord::Schema.define(version: 2020_11_16_204920) do
   end
 
   create_table "levels", force: :cascade do |t|
-    t.integer "level"
-    t.string "class"
+    t.integer "party_id"
+    t.integer "character_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "partys", force: :cascade do |t|
-    t.string "title"
+  create_table "parties", force: :cascade do |t|
+    t.string "name"
+    t.integer "campaign_id"
     t.integer "size"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
