@@ -70,6 +70,6 @@ class CampaignsController < ApplicationController
     end
 
 	def campaign_params
-		params.require(:campaign).permit(:title, :description, :dungeonmaster_id, :number_of_parties, parties_attributes: [:id, :name, :description, :size, :campaign_id, character_ids:[], characteristics_attributes: [:name], level_attributes: [:class, :id]])
+		params.require(:campaign).permit(:title, :description, :dungeonmaster_id, :number_of_parties, parties_attributes: [:id, :name, :description, :size, :campaign_id])
 	end
 end

@@ -9,6 +9,8 @@ gem 'omniauth-oauth2', '1.3.1'
 
 gem 'omniauth-facebook'
 
+gem 'pry'
+
 gem 'thin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'

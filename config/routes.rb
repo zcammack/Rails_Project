@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   post 'dungeonmasters/:id/campaigns/new', :to => 'campaigns#create'
 
   resources :dungeonmasters do
-    resources :campaigns do
-      resources :partys, only: [:parties_with_4_or_more]
-    end
+    resources :campaigns
   end
+
+  resources :parties do
+    resources :characters
+  end
+  
   resources :players
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
