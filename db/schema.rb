@@ -10,34 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_023320) do
+ActiveRecord::Schema.define(version: 2020_11_22_060321) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "dungeonmaster_id"
     t.integer "number_of_parties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "party_id"
-  end
-
-  create_table "dungeonmasters", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "levels", force: :cascade do |t|
-    t.integer "party_id"
-    t.integer "character_id"
+    t.string "class"
+    t.string "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -45,16 +32,8 @@ ActiveRecord::Schema.define(version: 2020_11_18_023320) do
   create_table "parties", force: :cascade do |t|
     t.string "name"
     t.integer "campaign_id"
+    t.integer "character_id"
     t.integer "size"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.integer "party_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,7 +53,6 @@ ActiveRecord::Schema.define(version: 2020_11_18_023320) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
     t.string "uid"
-    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

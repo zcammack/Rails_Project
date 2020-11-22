@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  enum role: [:dungeonmaster, :player]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
@@ -12,14 +11,5 @@ class User < ApplicationRecord
     end      
   end
 
-
-  def set_dungeonmaster_role
-    self.role = :dungeonmaster
-    self.save
-  end
-
-  def set_player_role
-    self.role = :player
-    self.save
-  end
+  has_many :campaigns
 end

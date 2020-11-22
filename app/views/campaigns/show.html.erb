@@ -6,15 +6,14 @@
     Error: <%= error_message %> <br />
   <% end %>
 <% end %>
-<h2>Update your Campaign and add Parties!</h2>
-<%= render 'form', campaign: @campaign, parties: @campaign.parties.to_a %>
-
+<h2>Your Campaign Parameters</h2>
+<%= render 'form' %>
 <br>
 
-<%= link_to 'All Campaigns', dungeonmaster_campaigns_path %><br>
+<%= link_to 'All Campaigns', campaigns_path %><br>
 
-<%= link_to 'New Campaign', new_dungeonmaster_campaign_path %><br>
+<%= link_to 'New Campaign', new_campaign_path %><br>
 
-<%= link_to 'Edit Campaign', edit_dungeonmaster_campaign_path(@campaign) %><br>
+<%= link_to 'Edit Campaign', edit_campaign_path(@campaign) %><br>
 
-<%= link_to 'Delete', dungeonmaster_campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
+<%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>

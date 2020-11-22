@@ -1,19 +1,17 @@
-<h1>List of All Campaigns</h1>
+<h1>List of All My Campaigns</h1>
 <br>
-<%= link_to 'New Campaign', new_dungeonmaster_campaign_path %>
+<%= link_to 'New Campaign', new_campaign_path %>
 <br><br>
 <table>
     <tr>
         <th>Title</th>
-        <th>Dungeonmaster</th>
-        <th colspan="2"></th>
+        <th colspan="1"></th>
     </tr>
     
     <% @campaigns.each do |campaign| %>
         <tr>
             <td><%= campaign.title %></td>
-            <td><%= campaign.dungeonmaster.name %></td>
-            <td><%= link_to 'Show', dungeonmaster_campaign_path(campaign) %></td>
+            <td><%= link_to 'Show', campaign_path(campaign) %></td>
             </td>
         </tr>
     <% end %>

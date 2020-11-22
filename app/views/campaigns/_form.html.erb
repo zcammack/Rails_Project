@@ -1,15 +1,24 @@
-<%= form_with model: @campaign, url: @url do |f| %>
-	Title: <%= f.text_field :title %><br /><br />
-	Description: <%= f.text_field :description %><br /><br />
-	Number of Parties: <%= f.text_field :number_of_parties %><br /><br />
-	<h4>Parties:</h4>
-	<%= f.fields_for :parties, @campaign.parties do |a| %>
-		Name: <%= a.text_field :name %><br /><br /> 
-		Size: <%= a.text_field :size %><br /><br /> 
-		Description: <%= a.text_field :description %><br /><br /> 
-		<%= a.collection_check_boxes :character_ids, Character.all, :id, :name %>
-		<br /><br />
-		<h3>----------------------------------------------------------------------------------------</h3>
+<br />
+<%= form_for(@campaign) do |f| %>
+<h4>Campaign Details</h4>
+	<% @campaign.user_id = current_user.id %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %><br /><br />
+
+	<%= f.label :description%>
+	<%= f.text_field :description %><br /><br /><br />
+
+	<h4>Starting Party:</h4>
+
+	<%= f.fields_for :parties do |a| %>
+
+		<%= a.label :name %>
+		<%= a.text_field :name %><br /><br />
+
+		<%= a.label :size%>
+		<%= a.text_field :size %><br /><br /><br />
+
  	<% end %> 
     <%= f.submit %>
 <% end %>

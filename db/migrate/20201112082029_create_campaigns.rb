@@ -3,7 +3,7 @@ class CreateCampaigns < ActiveRecord::Migration[6.0]
     create_table :campaigns do |t|
       t.string :title
       t.text :description
-      t.integer :dungeonmaster_id
+      t.integer :user_id
       t.integer :number_of_parties
 
       t.timestamps
