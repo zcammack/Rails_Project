@@ -11,5 +11,8 @@ class User < ApplicationRecord
     end      
   end
 
-  has_many :campaigns
+  has_many :campaigns, dependent: :destroy
+  has_many :characters, dependent: :destroy
+  has_many :parties, dependent: :destroy
+
 end

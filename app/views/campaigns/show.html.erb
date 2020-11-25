@@ -6,8 +6,30 @@
     Error: <%= error_message %> <br />
   <% end %>
 <% end %>
-<h2>Your Campaign Parameters</h2>
-<%= render 'form' %>
+<h2>Campaign Information</h2><br   />
+
+<h4>Campaign Details</h4>
+  <p><strong>Title:</strong> <%= @campaign.title %></p>
+  <p><strong>Description:</strong> <%= @campaign.description %></p><br>
+
+<h4>Campaign Party Information</h4>
+ <table>
+    <tr>
+        <th>Title</th>
+        <th>Size</th>
+        <th colspan="2"></th>
+    </tr>
+    
+    <% @campaign.parties.each do |party| %>
+        <tr>
+            <td><%= party.name %></td>
+            <td><%= party.characters.count %></td>
+            <td><%= link_to 'Show', campaign_party_path(@campaign, party) %></td>
+            </td>
+        </tr>
+    <% end %>
+</table>
+
 <br>
 
 <%= link_to 'All Campaigns', campaigns_path %><br>

@@ -11,16 +11,16 @@ class CharactersController < ApplicationController
     end
 
     def new
-        @character = current_user.characters.new
+        @character = current_user.characters.build
     end
 
     def edit
-        get_character
+
     end
 
     def create
         @character = current_user.characters.new(character_params)
-
+        binding.pry
         if @character.save
             redirect_to @character
         else
@@ -48,6 +48,6 @@ class CharactersController < ApplicationController
     end
 
     def character_params
-        params.require(:character).permit(:first_name, :last_name, :campaign_id, :user_id)
+        params.require(:character).permit(:name, :level, :profession)
     end
 end

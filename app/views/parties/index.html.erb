@@ -1,0 +1,9 @@
+<h1><%= @campaign.title %></h1><br>
+ 
+<p>Parties:</p>
+<% @campaign.parties.each do |party| %>
+  <div> <%= link_to party.name, campaign_party_path(@campaign, party.id) %></div>
+<% end %> <br>
+
+ 
+Or Create a <%= link_to "New Party", new_campaign_party_path(@campaign) %>

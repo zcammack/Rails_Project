@@ -1,0 +1,16 @@
+<h3><%= @party.name %></h3>
+  <h5>Number of Characters: <%= @party.characters.count %></h5>
+
+  <% if @party.characters.count == 0 %>
+    "Looks like you don't have any characters here yet..."
+  <% else %>
+    <p>Characters:</p>
+      <% @party.characters.each do |char| %>
+        <div> <%= link_to char.name, character_path(character.id) %></div>
+      <% end %>
+  <% end %>
+  <br>
+
+<%= link_to 'Create New Character', new_character_path %><br />
+
+<%= link_to 'Delete', campaign_party_path(@campaign, @party), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
