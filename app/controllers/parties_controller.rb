@@ -15,15 +15,8 @@ class PartiesController < ApplicationController
         @party = Party.new(campaign_id: params[:campaign_id])
     end
 
-    def edit
-        unless current_user == @campaign.user
-            flash[:danger] = "You cannot edit other user's parties!"
-            redirect_to campaign_parties_path
-        end
-    end
-
     def create 
-        @party = Party.create(party_params)
+        @party = current_user.parties.build(party_params)
         @party.campaign_id = params[:campaign_id]
         if @party.valid?
            @party.save

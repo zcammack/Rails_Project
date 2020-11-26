@@ -11,7 +11,7 @@ class CampaignsController < ApplicationController
 
     def new
         @campaign = current_user.campaigns.build
-        @campaign.parties.build(name: "")
+        @party = @campaign.parties.build(name: "")
     end
 
     def edit

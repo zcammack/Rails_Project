@@ -1,5 +1,5 @@
 
-<%= form_with model: @character, local: true do |form| %>
+<%= form_with model: @character, url: party_characters_path do |form| %>
  
   <% if @character.errors.any? %>
     <div id="error_explanation">

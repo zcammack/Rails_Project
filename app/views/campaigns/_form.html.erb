@@ -1,5 +1,5 @@
 <br />
-<%= form_for(@campaign) do |f| %>
+<%= form_with model: @campaign do |f| %>
 
   <% if @campaign.errors.any? %>
     <div id="error_explanation">
@@ -40,13 +40,12 @@
 
 	<h4>Starting Party:</h4>
 
+	<% @party.user_id = current_user.id %>
+
 	<%= f.fields_for :parties do |a| %>
 
 		<%= a.label :name %>
 		<%= a.text_field :name %><br /><br />
-
-		<%= a.label :size%>
-		<%= a.text_field :size %><br /><br /><br />
 
  	<% end %> 
     <%= f.submit %>

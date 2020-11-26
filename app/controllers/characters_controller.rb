@@ -3,7 +3,8 @@ class CharactersController < ApplicationController
     before_action :get_character, only: [:show, :edit, :update, :destroy]
 
     def index
-        @characters = Character.all
+        @party = Party.find(params[:party_id])
+        @characters = Party.find(params[:party_id]).characters
     end
 
     def show
@@ -11,34 +12,53 @@ class CharactersController < ApplicationController
     end
 
     def new
-        @character = current_user.characters.build
+        if params[:party_id] && !Party.exists?(params[:party_id])
+            redirect_to campaign_parties_path, alert: "Party not found."
+        else
+             @character = Character.new(party_id: params[:party_id])
+        end
     end
 
     def edit
+        if params[:party_id]
+            party = Party.find_by(id:params[:party_id])
+            if party.nil?
+                redirect_to party_characters_path, alert: "Party not found."
+            else
+                @character = party.characters.find_by(id: params[:id])
+                redirect_to party_characters_path(party), alert: "Character not found." if @character.nil?
+            end
+        else
+            @character = Character.find(params[:id])
 
-    end
+        end
+   end
 
     def create
         @character = current_user.characters.new(character_params)
-        binding.pry
-        if @character.save
-            redirect_to @character
+        @character.party_id = params[:party_id]
+        if @character.valid?
+            @character.save
+            redirect_to party_characters_path
         else
-            render 'new'
+            flash[:notice] = "The character couldn't be saved."
+            redirect_to new_party_character_path
         end
     end
 
     def update
         if @character.update(character_params)
-            redirect_to @character
+            flash[:notice] = "Character has been saved!"
+            redirect_to party_characters_path(@character.party_id)
         else
-            render 'edit'
+            flash[:notice] = "The character couldn't be saved."
+            redirect_to edit_party_character_path
         end
     end
 
     def destroy
         @character.destroy
-        redirect_to characters_path
+        redirect_to party_characters_path
     end
 
     private

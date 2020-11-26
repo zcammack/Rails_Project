@@ -1,23 +1,9 @@
-<h1>List of All Characters</h1>
+<h1><%= @party.name %></h1><br>
+ 
+<p>Characters:</p>
+<% @party.characters.each do |character| %>
+  <div> <%= link_to character.name, party_character_path(@party, character.id) %></div>
+<% end %> <br>
 
-<%= link_to 'New Character', new_character_path %>
-
-<table>
-    <tr>
-        <th>First Name</th>
-        <th colspan="2"></th>
-    </tr>
-    
-    <% @characters.each do |character| %>
-        <tr>
-            <td><%= character.name %></td>
-            <td><%= character.profession %></td>
-            <td><%= link_to 'Show', character_path(character) %></td>
-            <td><%= link_to 'Edit', edit_character_path(character) %></td>
-            <td><%= link_to 'Delete', character_path(character),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?'} %>
-            </td>
-        </tr>
-    <% end %>
-</table>
+ 
+Or Create a <%= link_to "New Character", new_party_character_path(@party) %>

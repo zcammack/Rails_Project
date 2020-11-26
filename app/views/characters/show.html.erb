@@ -1,15 +1,22 @@
 <p>
-    <strong>First Name:</strong>
-    <%= @character.first_name %>
+    <strong>Name:</strong>
+    <%= @character.name %>
 </p>
 
 <p>
-    <strong>Last Name:</strong>
-    <%= @character.last_name %>
+    <strong>Profession:</strong>
+    <%= @character.profession %>
 </p>
 
-<%= link_to 'All Characters', characters_path %>
+<p>
+    <strong>Level:</strong>
+    <%= @character.level %>
+</p>
 
-<%= link_to 'New Character', new_character_path %>
+<%= link_to 'All Characters', party_characters_path %><br />
 
-<%= link_to 'Edit Character', edit_character_path(@character) %>
+<%= link_to 'New Character', new_party_character_path %><br />
+
+<%= link_to 'Edit Character', edit_character_path(@character.id) %><br />
+
+<%= link_to 'Delete', party_character_path(@character.party_id, @character), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
