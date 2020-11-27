@@ -11,6 +11,8 @@
   <% end %>
   <br>
 
+<%= link_to "Back to Campaign", campaign_path(@campaign) %><br />
+
 <%= link_to 'Create New Character', new_party_character_path(@party, @character) %><br />
 
 <%= link_to 'Delete', campaign_party_path(@campaign, @party), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>

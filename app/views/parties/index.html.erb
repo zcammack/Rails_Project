@@ -6,4 +6,6 @@
 <% end %> <br>
 
  
-Or Create a <%= link_to "New Party", new_campaign_party_path(@campaign) %>
+<%= link_to "New Party", new_campaign_party_path(@campaign) %> <br />
+
+<%= link_to "Back to Campaign", campaign_path(@campaign) %>

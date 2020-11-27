@@ -1,6 +1,5 @@
 class Party < ApplicationRecord
 	belongs_to :campaign
-
     has_many :characters
     validates :name, presence: true
     validates_uniqueness_of :name, scope: :campaign_id

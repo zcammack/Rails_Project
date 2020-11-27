@@ -29,8 +29,7 @@ class CharactersController < ApplicationController
                 redirect_to party_characters_path(party), alert: "Character not found." if @character.nil?
             end
         else
-            @character = Character.find(params[:id])
-
+            get_character
         end
    end
 
