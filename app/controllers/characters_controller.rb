@@ -8,10 +8,7 @@ class CharactersController < ApplicationController
     end
 
     def show
-        def show
-            @party = Party.find(params[:id])
-            @character = @party.characters.new
-        end
+        @party = Party.find(params[:id])
     end
 
     def new

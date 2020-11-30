@@ -29,7 +29,7 @@ class CampaignsController < ApplicationController
             redirect_to campaigns_path
         else
             flash[:notice] = "The campaign couldn't be saved."
-            redirect_to new_campaign_path
+            render "new"
         end
     end
 

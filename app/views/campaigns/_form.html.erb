@@ -1,5 +1,5 @@
 <br />
-<%= form_with model: @campaign do |f| %>
+<%= form_with model: [@campaign, @party], local: true do |f| %>
 
   <% if @campaign.errors.any? %>
     <div id="error_explanation">
@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-    <% if @party.errors.any? %>
+  <% if @party.errors.any? %>
     <div id="error_explanation">
       <h2>
         <%= pluralize(@party.errors.count, "error") %> prohibited
