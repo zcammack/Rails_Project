@@ -41,7 +41,7 @@ class CharactersController < ApplicationController
             redirect_to party_characters_path
         else
             flash[:notice] = "The character couldn't be saved."
-            redirect_to new_party_character_path
+            render 'new'
         end
     end
 
@@ -51,7 +51,7 @@ class CharactersController < ApplicationController
             redirect_to party_characters_path(@character.party_id)
         else
             flash[:notice] = "The character couldn't be saved."
-            redirect_to edit_party_character_path
+            render 'edit'
         end
     end
 

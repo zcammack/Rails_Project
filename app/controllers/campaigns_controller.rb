@@ -18,7 +18,7 @@ class CampaignsController < ApplicationController
     def edit
         unless current_user == @campaign.user
             flash[:danger] = "You cannot edit other user's campaigns!"
-            redirect_to campaigns_path
+            render 'index'
         end
     end
 

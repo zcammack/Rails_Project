@@ -1,7 +1,8 @@
 <h1>Edit Campaign</h1>
 
 <br />
-<%= form_for(@campaign) do |f| %>
+<%= form_with model: [@campaign], local: true do |f| %>
+
 <h4>Campaign Details</h4>
 	<% @campaign.user_id = current_user.id %>
 

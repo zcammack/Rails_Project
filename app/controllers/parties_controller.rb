@@ -23,7 +23,7 @@ class PartiesController < ApplicationController
             redirect_to campaign_parties_path
         else
             flash[:notice] = "The party couldn't be saved."
-            redirect_to new_campaign_party_path
+            render 'new'
         end
     end
 

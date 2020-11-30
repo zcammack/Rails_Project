@@ -4,10 +4,19 @@
   <% if @party.characters.count == 0 %>
     "Looks like you don't have any characters here yet..."
   <% else %>
-    <p>Characters:</p>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th colspan="1"></th>
+      </tr>
+      
       <% @party.characters.each do |char| %>
-        <div> <%= link_to char.name, party_character_path(@party.id, char.id) %></div>
+        <tr>
+          <td><%= char.name %></td>
+          <td><%= link_to 'Show', party_character_path(@party, char) %></td>
+        </tr>
       <% end %>
+    </table>
   <% end %>
   <br>
 
