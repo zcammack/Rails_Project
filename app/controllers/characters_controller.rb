@@ -8,7 +8,10 @@ class CharactersController < ApplicationController
     end
 
     def show
-
+        def show
+            @party = Party.find(params[:id])
+            @character = @party.characters.new
+        end
     end
 
     def new
@@ -21,11 +24,11 @@ class CharactersController < ApplicationController
 
     def edit
         if params[:party_id]
-            party = Party.find_by(id:params[:party_id])
-            if party.nil?
+            @party = Party.find_by(id:params[:party_id])
+            if @party.nil?
                 redirect_to party_characters_path, alert: "Party not found."
             else
-                @character = party.characters.find_by(id: params[:id])
+                @character = @party.characters.find_by(id: params[:id])
                 redirect_to party_characters_path(party), alert: "Character not found." if @character.nil?
             end
         else

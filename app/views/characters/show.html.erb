@@ -17,6 +17,6 @@
 
 <%= link_to 'New Character', new_party_character_path %><br />
 
-<%= link_to 'Edit Character', edit_character_path(@character.id) %><br />
+<%= link_to 'Edit Character', edit_party_character_path(@character.party_id, @character) %><br />
 
 <%= link_to 'Delete', party_character_path(@character.party_id, @character), method: :delete, data: { confirm: 'Are you sure?', disable_with: "Working..." } %><br>
